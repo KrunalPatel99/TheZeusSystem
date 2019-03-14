@@ -4,9 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Employee Info</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
 <table class="table sortable">
     <tr>
         <th>
@@ -44,11 +48,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EmployeeDoB)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.EmployeeID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
-            </td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.EmployeeID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
+                </td>
+            }
+
         </tr>
     }
 </table>

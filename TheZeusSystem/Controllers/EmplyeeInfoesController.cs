@@ -10,10 +10,12 @@ using TheZeusSystem.Models;
 
 namespace TheZeusSystem.Controllers
 {
+    [Authorize]
     public class EmplyeeInfoesController : Controller
     {
         private TZSdb db = new TZSdb();
 
+        [AllowAnonymous]
         // GET: EmplyeeInfoes
         public ActionResult Index()
         {
